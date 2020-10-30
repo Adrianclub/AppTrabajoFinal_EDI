@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "tercerdialog.h"
 #include <QDebug>
+
 secDialog::secDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::secDialog)
@@ -15,36 +16,6 @@ secDialog::secDialog(QWidget *parent) :
 secDialog::~secDialog()
 {
     delete ui;
-}
-
-void secDialog::setDatosReg(QString renglon)
-{/*
-    QString contAnterior;
-    QString contActual;
-    QFile registro ("registro.txt");
-    if (registro.open (QIODevice::ReadOnly)){
-        QTextStream leer (&registro);
-        contAnterior.append (leer.readAll());
-        registro.close();
-    }
-
-    if (registro.open (QIODevice::WriteOnly)){
-        QTextStream escribir (&registro);
-        escribir << contAnterior;
-        escribir << renglon;
-        registro.close();
-    }
-
-    if (registro.open (QIODevice::ReadOnly)){
-        QTextStream leer (&registro);
-        contActual.append (leer.readAll());
-        registro.close();
-    }
-
-    ui->plainTextEdit_registro->setPlainText(contActual);
-    ui->plainTextEdit_registro->verticalScrollBar()//el contenido actual baja por el scrollbar
-            ->setValue(ui->plainTextEdit_registro->verticalScrollBar()->maximum());//setea al valor max del plainedit
-*/
 }
 
 
@@ -77,11 +48,6 @@ void secDialog::mostrarTablaEntrega()
 
     }
 }
-
-
-
-
-
 
 
 void secDialog::on_pushButton_borrar_clicked()

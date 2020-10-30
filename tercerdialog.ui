@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>362</height>
+    <height>447</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,21 +31,28 @@
     <rect>
      <x>30</x>
      <y>120</y>
-     <width>291</width>
-     <height>221</height>
+     <width>311</width>
+     <height>181</height>
     </rect>
    </property>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
    <column>
     <property name="text">
-     <string>Nombre</string>
+     <string>New Column</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Password</string>
+     <string>New Column</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>New Column</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>New Column</string>
     </property>
    </column>
   </widget>

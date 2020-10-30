@@ -31,11 +31,12 @@ MainWindow::MainWindow(QWidget *parent)
     //crea o abre base dato ( retorna bool)
     if(db.open()){
         qDebug()<<"Base de datos conectada..";
-    }else{
-        qDebug()<<" ERROR Base de datos NO conectada..";
-    }
+         }else{
+             qDebug()<<" ERROR Base de datos NO conectada..";
+              }
     crearTablaUsuarios();
     crearTablaEntregas();
+
 }
 
 
@@ -48,26 +49,25 @@ MainWindow::~MainWindow()
 void MainWindow::crearTablaUsuarios()
 {
     QString consulta;
-    consulta.append("CREATE TABLE IF NOT EXISTS usuarios("
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    "usuario VARCHAR(100),"
-                    "paswword  VARCHAR(100) "
-                     ");");
-    QSqlQuery crear;
-    crear.prepare(consulta);
-    if (crear.exec()){
-        qDebug()<<"La tabla usuario existe o se creo correctamente";
-    }else{
-        qDebug()<<"ERROR "<<crear.lastError();
-    }
+       consulta.append("CREATE TABLE IF NOT EXISTS usuarios("
+                       "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                       "usuario VARCHAR(100),"
+                       "paswword  INTEGER "
+                        ");");
+       QSqlQuery crear;
+       crear.prepare(consulta);
+       if (crear.exec()){
+           qDebug()<<"La tabla usuario existe o se creo correctamente";
+       }else{
+           qDebug()<<"ERROR "<<crear.lastError();
+       }
 }
+
 
 void MainWindow::crearTablaEntregas()
 {
     QString consulta;
     consulta.append("CREATE TABLE IF NOT EXISTS entregas("
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-
                     "usuario VARCHAR(100),"
                     "cliente VARCHAR(100),"
                     "tiempo INTEGER NOT NULL "
@@ -86,14 +86,11 @@ void MainWindow::insertarEntrega()
     {
         QString consulta;
         consulta.append("INSERT INTO entregas"
-
                         "(usuario, cliente, tiempo ) "
-
                         "VALUES "
-
                         "('"+ui->lineEdit_usuario->text()+"',"
                         "'"+ui->lineEdit_3_cliente->text()+ "',"
-                        " 88);"
+                        "999);"
 
                         );
         QSqlQuery insertar;
@@ -107,10 +104,6 @@ void MainWindow::insertarEntrega()
 }
 
 
-
-
-
-
 void MainWindow::fTimer(){
     ui->lcdNumber->display (cont++);
     ui->label_3->setText(QDateTime::currentDateTime().toString());
@@ -120,57 +113,29 @@ void MainWindow::fTimer(){
 
 
 void MainWindow::on_pushButton_ingreso_clicked()
-{/*
-    QString username = ui->lineEdit_usuario->text();
-    QString idUsuario = ui->lineEdit_2_password->text();
-       if  ((username=="B" && idUsuario== "B")||
-                 (username=="Adm" && idUsuario== "Adm")){
-
-           QMessageBox::information(this,"Login", "Ingreso de usuario correcto ");
-           control = true;
-
-          }
-           else {
-               QMessageBox::warning(this,"Login", "Ingreso  usuario incorrecto");
-                }
-       if (username=="Adm" && idUsuario== "Adm"){
-           secDialog secunDialg;//crea un objeto segundadialogo(ventana)
-           secunDialg.exec();}
-
-
-*/
+{
 
     int cantidad;
-    Usuario usuario(ui->lineEdit_usuario->text(),ui->lineEdit_2_password->text());
-    QString consulta;
-    consulta.append(QString("SELECT count (*) FROM usuarios"
-
-                    "WHERE  "
-
-                    "usuario LIKE '"+ui->lineEdit_usuario->text()+"' AND password LIKE '"+ui->lineEdit_2_password->text()+"'; "
-                   ));
-
-
-
-   //. arg( usuario.contrasenya() .arg(usuario.nombre())
-
-
-
     QSqlQuery consultar;
-    consultar.prepare(consulta);
-    if (consultar.exec()){
-        qDebug()<<"La consulta se realizo en tabla usuarios";
-    }else{
-        qDebug()<<"ERROR  en consulta a usuarios"<<consultar.lastError();
-    }
-    consultar.next();
-    cantidad = consultar.value(0).toInt();
-    if(cantidad == 0){
-        QMessageBox::warning(this,"Login", "Ingreso  usuario incorrecto");
-    }else {
-         QMessageBox::information(this,"Login", "Ingreso de usuario correcto ");
-         control = true;
 
+    consultar.exec(" SELECT* FROM usuarios WHERE usuario ="
+                   " '"+ui->lineEdit_usuario->text()+"'"
+                   " AND paswword = "
+                   ""+ui->lineEdit_2_password->text()+ " ;");
+
+
+       if (consultar.exec()){
+           qDebug()<<"La consulta se realizo en tabla usuarios";
+       }else{
+           qDebug()<<"ERROR  en consulta a usuarios"<<consultar.lastError();
+       }
+       consultar.next();
+       cantidad = consultar.value(0).toInt();
+       if(cantidad == 0){
+           QMessageBox::warning(this,"Login", "Ingreso  usuario incorrecto");
+       }else {
+            QMessageBox::information(this,"Login", "Ingreso de usuario correcto ");
+            control = true;
       }
 
          if (ui->lineEdit_usuario->text()=="Adm" && control==true){
@@ -178,22 +143,7 @@ void MainWindow::on_pushButton_ingreso_clicked()
              secunDialg.exec();}
 
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 void MainWindow::on_pushButton_clean_clicked()

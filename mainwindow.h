@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlQuery>
-#include <QtSql/QSqlError>
+#include <QtSql/QSqlQuery>//libreria que permite consultas y req. a BD
+#include <QtSql/QSqlError>//libreria que permite conocer errores en consultas BD
 #include "usuario.h"
 
 

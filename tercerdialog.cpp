@@ -17,23 +17,45 @@ tercerDialog::~tercerDialog()
 void tercerDialog::insertarUsuario()
 {
     QString consulta;
-    consulta.append("INSERT INTO usuarios("
+       consulta.append("INSERT INTO usuarios("
 
-                    "usuario ,"
-                    "paswword )"
-                    "VALUES( "
-                    "'"+ui->lineEdit_Usuario->text()+"',"
-                    ""+ui->lineEdit_password->text()+""
+                       "usuario ,"
+                       "paswword )"
+                       "VALUES( "
+                       "'"+ui->lineEdit_Usuario->text()+"',"
+                       ""+ui->lineEdit_password->text()+""
 
-                     ");");
-    QSqlQuery insertar;
-    insertar.prepare(consulta);
-    if (insertar.exec()){
-        qDebug()<<"El usuario se inserto en tabla";
-    }else{
-        qDebug()<<"ERROR "<<insertar.lastError();
-    }
+                        ");");
+       QSqlQuery insertar;
+       insertar.prepare(consulta);
+       if (insertar.exec()){
+           qDebug()<<"El usuario se inserto en tabla";
+       }else{
+           qDebug()<<"ERROR "<<insertar.lastError();
+       }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void tercerDialog::mostrarTablaUsuario()
 {
